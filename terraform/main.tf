@@ -6,8 +6,11 @@ terraform {
     }
   }
 
+
   backend "s3" {
-    key = "aws/ec2-deploy/terraform.tfstate"
+    bucket = "your-terraform-state-bucket" # Replace with your bucket name
+    key    = "aws/ec2-deploy/terraform.tfstate"
+    region = "your-region"  # Replace with the AWS region of your bucket
   }
 }
 
