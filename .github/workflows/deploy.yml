@@ -36,8 +36,8 @@ jobs:
         run: |-
           terraform plan \
           -var="region=us-east-1" \
-          -var="public_key=$PUBLIC_SSH_KEY" \
-          -var="private_key=$PRIVATE_SSH_KEY" \
+          -var="public_key=$AWS_SSH_KEY_PUBLIC" \
+          -var="private_key=$AWS_SSH_KEY_PRIVATE" \
           -var="key_name=$deployer-key" \
           -out=PLAN
         working-directory: ./terraform
