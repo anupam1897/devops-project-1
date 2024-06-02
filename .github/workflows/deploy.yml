@@ -2,7 +2,7 @@ name: CI/CD with terraform
 on:
   push:
     branches:
-      - Complete CI/CD with terraform-aws
+      - master
 
 env:
   AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID 
