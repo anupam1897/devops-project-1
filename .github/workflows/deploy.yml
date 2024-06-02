@@ -36,9 +36,11 @@ jobs:
         run: |-
           terraform plan \
           -var="region=us-east-1" \
-          -var="public_key=$AWS_SSH_KEY_PUBLIC" \
-          -var="private_key=$AWS_SSH_KEY_PRIVATE" \
-          -var="key_name=$deployer-key" \
+          -var="public_key=${{ secrets.AWS_SSH_KEY_PUBLIC }}" \
+          -var="private_key=${{ secrets.AWS_SSH_KEY_PRIVATE }}" \
+          -var="key_name=deployer-key" \
+          -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
+          -var="aws_secret_key=${{ secrets.AWS_ACCESS_KEY_SECRET }}" \
           -out=PLAN
         working-directory: ./terraform
       - name: Terraform Apply
