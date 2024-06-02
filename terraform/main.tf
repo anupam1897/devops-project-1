@@ -8,9 +8,9 @@ terraform {
 
 
   backend "s3" {
-    bucket = "your-terraform-state-bucket" # Replace with your bucket name
+    bucket = "devops-first-s3-bucket" # Replace with your bucket name
     key    = "aws/ec2-deploy/terraform.tfstate"
-    region = "your-region"  # Replace with the AWS region of your bucket
+    region = "us-east-1"  # Replace with the AWS region of your bucket
   }
 }
 
