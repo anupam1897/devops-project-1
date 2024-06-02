@@ -20,8 +20,9 @@ provider "aws" {
   secret_key = var.aws_secret_key
 }
 
+
 resource "aws_security_group" "group1" {
-  egress = [{
+  egress {
     cidr_blocks      = ["0.0.0.0/0"]
     description      = ""
     from_port        = 0
@@ -30,9 +31,9 @@ resource "aws_security_group" "group1" {
     protocol         = "-1"
     self             = false
     to_port          = 0
-  }]
+  }
 
-  ingress = [{
+  ingress {
     cidr_blocks      = ["0.0.0.0/0"]
     description      = ""
     from_port        = 22
@@ -41,8 +42,9 @@ resource "aws_security_group" "group1" {
     protocol         = "tcp"
     self             = false
     to_port          = 22
-  },
-  {
+  }
+
+  ingress {
     cidr_blocks      = ["0.0.0.0/0"]
     description      = ""
     from_port        = 80
@@ -51,7 +53,7 @@ resource "aws_security_group" "group1" {
     protocol         = "tcp"
     self             = false
     to_port          = 80
-  }]
+  }
 }
 
 resource "aws_iam_instance_profile" "ec2-profile" {
