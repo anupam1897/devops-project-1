@@ -22,6 +22,12 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_wrapper: false
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: $secrets.AWS_ACCESS_KEY_ID
+          aws-secret-access-key: $secrets.AWS_ACCESS_KEY_SECRET
+          aws-region: us-east-1    
       - name: terraform init
         run: terraform init -migrate-state -backend-config="bucket=$TF_STATE_BUCKET_NAME" -backend-config="region=us-east-1"
         working-directory: ./terraform
