@@ -58,7 +58,7 @@ resource "aws_security_group" "group1" {
 }
 
 resource "aws_iam_instance_profile" "ec2-profile" {
-  name = "ec2-profile-${random_string.suffix.result}"
+  name = "ec2-profile-1"
   role = "ec2-ecr-auth"
 }
 
