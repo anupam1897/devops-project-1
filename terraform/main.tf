@@ -21,10 +21,6 @@ provider "aws" {
   secret_key = var.aws_secret_key
 }
 
-resource "aws_s3_bucket" "terraform_state_bucket" {
-  bucket = "devops-first-s3-bucket"
-  
-}
 
 resource "aws_security_group" "group1" {
   egress {
