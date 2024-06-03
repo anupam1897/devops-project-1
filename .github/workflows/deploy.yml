@@ -61,6 +61,12 @@ jobs:
         uses: actions/checkout@v3
       - name: set IP Env variable
         run: echo SERVER_PUBLIC_IP=${{needs.deploy-infra.outputs.SERVER_PUBLIC_IP}} >> $GITHUB_ENV
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-key: ${{secrets.AWS_ACCESS_KEY_SECRET}}
+          aws-region: us-east-1    
       - name: login to AWS ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
