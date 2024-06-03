@@ -76,7 +76,7 @@ jobs:
           REPOSITORY: example-node-app
           IMAGE_TAG: ${{github.sha}}
         run: 
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG . \
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
         working-directory: ./nodeapp
       - name: Deploy docker image to ec23
@@ -92,12 +92,12 @@ jobs:
           key: ${{env.AWS_SSH_KEY_PRIVATE}}
           envs: AWS_SSH_KEY_PRIVATE,REGISTRY,REPOSITORY,IMAGE_TAG,AWS_ACCESS_KEY_ID,AWS_ACCESS_KEY_SECRET,AWS_REGION,AWS_DEFAULT_REGION
           script: |-
-            sudo apt update
-            sudo apt install docker.io -y
-            sudo apt install awscli -y
-            sudo $(aws ecr get-login --no-include-email --region us-east-1);
-            sudo docker stop myappcontainer|| true
-            sudo docker rm myappcontainer|| true
-            sudo docker pull $REGISTRY/$REPOSITORY:$IMAGE_TAG
-            sudo docker run -d --name myappcontainer -p 80:5000 $REGISTRY/$REPOSITORY:$IMAGE_TAG
+            sudo apt update \
+            sudo apt install docker.io -y \
+            sudo apt install awscli -y \
+            sudo $(aws ecr get-login --no-include-email --region us-east-1); \
+            sudo docker stop myappcontainer|| true \
+            sudo docker rm myappcontainer|| true \
+            sudo docker pull $REGISTRY/$REPOSITORY:$IMAGE_TAG \
+            sudo docker run -d --name myappcontainer -p 80:5000 $REGISTRY/$REPOSITORY:$IMAGE_TAG \
 
