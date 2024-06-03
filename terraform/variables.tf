@@ -18,3 +18,6 @@ variable "private_key" {
 }
 
 
+variable "tf_state_bucket_name" {
+  
+}
