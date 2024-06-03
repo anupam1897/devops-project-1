@@ -63,7 +63,7 @@ jobs:
         run: echo SERVER_PUBLIC_IP=${{needs.deploy-infra.outputs.SERVER_PUBLIC_IP}} >> $GITHUB_ENV
       - name: login to AWS ECR
         id: login-ecr
-        run: aws-actions/amazon-ecr-login@v1
+        uses: aws-actions/amazon-ecr-login@v1
       - name: Build, push docker image
         env: 
           REGISTRY: ${{steps.login-ecr.outputs.REGISTRY}}
@@ -72,6 +72,7 @@ jobs:
         run: 
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+        working-directory: ./nodeapp
       - name: Deploy docker image to ec23
         env: 
           REGISTRY: ${{steps.login-ecr.outputs.REGISTRY}}
