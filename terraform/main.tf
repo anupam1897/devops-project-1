@@ -9,7 +9,7 @@ terraform {
 
   backend "s3" {
     bucket = aws_s3_bucket.terraform_state_bucket.bucket # Replace with your bucket name
-    key    = "aws/ec2-deploy/terraform.tfstate"
+    key    = "terraform.tfstate"
     region = "us-east-1"  # Replace with the AWS region of your bucket
   }
 }
@@ -23,6 +23,7 @@ provider "aws" {
 
 resource "aws_s3_bucket" "terraform_state_bucket" {
   bucket = "devops-first-s3-bucket"
+  
 }
 
 resource "aws_security_group" "group1" {
